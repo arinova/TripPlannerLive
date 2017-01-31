@@ -13,27 +13,25 @@
     <div class="col-xs-6 col-sm-12">
       <div class="panel panel-default">
         <div class="panel-body" id="options-panel">
-          <div>
+          <div class="select-hotel">
             <h4>Hotels</h4>
             <select data-type="hotel" id="hotel-choices">
-              <option>Andaz Wall Street</option>
-              <option>...</option>
+
+
             </select>
             <button data-action="add" class="btn btn-primary btn-circle pull-right">+</button>
           </div>
-          <div>
+          <div class="select-restaurant">
             <h4>Restaurants</h4>
             <select data-type="restaurant" id="restaurant-choices">
-              <option>Bouley</option>
-              <option>...</option>
+
             </select>
             <button data-action="add" class="btn btn-primary btn-circle pull-right">+</button>
           </div>
-          <div>
+          <div class="select-activity">
             <h4>Activities</h4>
             <select data-type="activity" id="activity-choices">
-              <option>Mahayana Buddhist Temple Association</option>
-              <option>...</option>
+
             </select>
             <button data-action="add" class="btn btn-primary btn-circle pull-right">+</button>
           </div>
@@ -89,4 +87,11 @@
     </div>
   </div>
 </div>
+
+
+<script>
+  var hotels = {{ hotels | dump | safe }};
+  var restaurants = {{ restaurants | dump | safe }};
+  var activities = {{ activities | dump | safe }};
+</script>
 {% endblock %}
