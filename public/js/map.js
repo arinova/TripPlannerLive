@@ -1,8 +1,16 @@
-$(function initializeMap (){
+var fullstackAcademy;
+var mapCanvas;
+var iconURLs;
+var currentMap;
+var styleArr;
 
-  var fullstackAcademy = new google.maps.LatLng(40.705086, -74.009151);
 
-  var styleArr = [{
+
+function initializeMap (){
+
+ fullstackAcademy = new google.maps.LatLng(40.705086, -74.009151);
+
+ styleArr = [{
     featureType: 'landscape',
     stylers: [{ saturation: -100 }, { lightness: 60 }]
   }, {
@@ -31,16 +39,24 @@ $(function initializeMap (){
     stylers: [{ color: '#b6c54c' }, { lightness: 40 }, { saturation: -40 }]
   }];
 
-  var mapCanvas = document.getElementById('map-canvas');
 
-  var currentMap = new google.maps.Map(mapCanvas, {
+  mapCanvas = document.getElementById('map-canvas');
+
+  currentMap = new google.maps.Map(mapCanvas, {
     center: fullstackAcademy,
     zoom: 13,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     styles: styleArr
   });
 
-  var iconURLs = {
+  return currentMap;
+};
+
+   
+var myGoogleMap = initializeMap();
+
+
+   iconURLs = {
     hotel: '/images/lodging_0star.png',
     restaurant: '/images/restaurant.png',
     activity: '/images/star-3.png'
@@ -53,11 +69,15 @@ $(function initializeMap (){
       icon: iconURL,
       position: latLng
     });
-    marker.setMap(currentMap);
+    marker.setMap(myGoogleMap);
   }
 
+  
   drawMarker('hotel', [40.705137, -74.007624]);
   drawMarker('restaurant', [40.705137, -74.013940]);
   drawMarker('activity', [40.716291, -73.995315]);
 
-});
+//};
+
+
+  
