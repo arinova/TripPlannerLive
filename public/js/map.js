@@ -52,32 +52,48 @@ function initializeMap (){
   return currentMap;
 };
 
-   
+markersArray = [];
+  
 var myGoogleMap = initializeMap();
 
-
-   iconURLs = {
-    hotel: '/images/lodging_0star.png',
-    restaurant: '/images/restaurant.png',
-    activity: '/images/star-3.png'
-  };
-
-  function drawMarker (type, coords) {
-    var latLng = new google.maps.LatLng(coords[0], coords[1]);
-    var iconURL = iconURLs[type];
-    var marker = new google.maps.Marker({
-      icon: iconURL,
-      position: latLng
-    });
-    marker.setMap(myGoogleMap);
-  }
+  function drawMarker(type, coords, currentMap) {
+   var iconURLs = {
+     hotel: '/images/lodging_0star.png',
+     restaurant: '/images/restaurant.png',
+     activity: '/images/star-3.png'
+   };
+   var latLng = new google.maps.LatLng(coords[0], coords[1]);
+   var iconURL = iconURLs[type];
+   var marker = new google.maps.Marker({
+     icon: iconURL,
+     position: latLng
+   });
+  //  marker.setMap(currentMap);
+   markersArray.push(marker);
+ }
 
   
-  drawMarker('hotel', [40.705137, -74.007624]);
-  drawMarker('restaurant', [40.705137, -74.013940]);
-  drawMarker('activity', [40.716291, -73.995315]);
+  drawMarker('hotel', [40.705137, -74.007624], myGoogleMap);
+  drawMarker('restaurant', [40.705137, -74.013940], myGoogleMap);
+  drawMarker('activity', [40.716291, -73.995315], myGoogleMap);
 
-//};
+
+function setMapOnAll(map) {
+  for (var i = 0; i < markersArray.length; i++) {
+    markersArray[i].setMap(map);
+  }
+  };
+
+  function clearMarkers() {
+        setMapOnAll(null);
+  };
+
+function removeMarkers() {
+  
+}
+
+
+
 
 
   
