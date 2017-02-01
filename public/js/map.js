@@ -98,5 +98,5 @@ function setMapOnAll(map) {
 
 
   function removeMarkers() {
-    
+    setMapOnAll(null);
   }
