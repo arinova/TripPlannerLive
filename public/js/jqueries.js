@@ -17,74 +17,70 @@ activities.forEach(function(obj){
 //   $(this)
 // });
 
-
+/*Adding hotel to itenerary, and adding marker to map*/
 $('.select-hotel').on('click', 'button', function(event){
 
   var selected=$('#hotel-choices option:selected');
-  console.log("selected:", selected);
-  $('#myHotel').append(`<span class="title">${selected.text()}</span>`);
+  $('#myHotel').append(`<span class="title">${selected.text()}</span>`); //adds selected hotel to the itenerary
 
-  var hotelInfo;
+  var hotelInfo;                        //get hotel location
   for (let i = 0; i < hotels.length; i++){
   	if (hotels[i].name === selected.text()){
-  		console.log("hotel", hotels[i]);
   		hotelInfo = hotels[i].place.location;
   	}
   }
-  drawMarker('hotel', hotelInfo, myGoogleMap);
-  clearMarkers();
-  setMapOnAll(myGoogleMap);
+
+  //create marker with hotel location and adds to markersObj
+  drawMarker('hotel', hotelInfo);
+  setMapOnAll(null);  //reset map
+  setMapOnAll(myGoogleMap); //updates map with all markers in markersObj
 });
-
-
-
-
 
 
 $('.select-restaurant').on('click', 'button', function(event){
 
   var selected=$('#restaurant-choices option:selected');
-  console.log("selected:", selected.text());
   $('#myRestaurants').append(`<span class="title">${selected.text()}</span>`);
 
   var restaurantInfo;
   for (let i = 0; i < restaurants.length; i++){
-  	if (restaurants[i].name === selected.text()){
-  		console.log("restaurant", restaurants[i]);
-  		restaurantInfo = restaurants[i].place.location;
-  	}
+    if (restaurants[i].name === selected.text()){
+      console.log("hotel", restaurants[i]);
+      restaurantInfo = restaurants[i].place.location;
+    }
   }
-  drawMarker('restaurant', restaurantInfo, myGoogleMap);
-  clearMarkers();
-  setMapOnAll(myGoogleMap);
+
+  drawMarker('restaurant', restaurantInfo);
+  setMapOnAll(null);  //reset map
+  setMapOnAll(myGoogleMap); //updates map with all markers in markersObj
 });
-
-
-
-
 
 $('.select-activity').on('click', 'button', function(event){
 
   var selected=$('#activity-choices option:selected');
-  console.log("selected:", selected.text());
   $('#myActivities').append(`<span class="title">${selected.text()}</span>`);
 
   var activityInfo;
   for (let i = 0; i < activities.length; i++){
-  	if (activities[i].name === selected.text()){
-  		console.log("activity", activities[i]);
-  		activityInfo = activities[i].place.location;
-  	}
+    if (activities[i].name === selected.text()){
+      console.log("hotel", activities[i]);
+      activityInfo = activities[i].place.location;
+    }
   }
-  drawMarker('activity', activityInfo, myGoogleMap);
-  clearMarkers();
-  setMapOnAll(myGoogleMap);
+
+  drawMarker('activity', activityInfo);
+  setMapOnAll(null);  //reset map
+  setMapOnAll(myGoogleMap); //updates map with all markers in markersObj
 });
 
 
+/*Remove Markers*/
+$('#myRestaurants .remove').on('click',function(){
 
-$('#myRestaurants .remove').on('click', function () {
-  $('#myRestaurants').empty();
+    markersObj.restaurant=[];     //remove restaurants from array
+    $('#myRestaurants span').remove(); //empty resturant list
+
+    markersObj.restaurant.setMapOnAll(null);
+    // setMapOnAll(myGoogleMap); //updates map with all markers in markersObj
+    // // });
 });
-
-

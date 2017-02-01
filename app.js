@@ -28,14 +28,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 // serve dynamic routes
 app.use(require('./routes'));
 
-var requirejs = require('requirejs');
 
-requirejs.config({
-    //Pass the top-level main.js/index.js require
-    //function to requirejs so that node modules
-    //are loaded relative to the top-level JS file.
-    nodeRequire: require
-});
 
 // failed to catch req above means 404, forward to error handler
 app.use(function (req, res, next) {

@@ -52,8 +52,13 @@ function initializeMap (){
   return currentMap;
 };
 
-markersArray = [];
-  
+// markersArray = [];
+var markersObj={
+  hotel: [],
+  restaurant: [],
+  activity: []
+}
+
 var myGoogleMap = initializeMap();
 
   function drawMarker(type, coords, currentMap) {
@@ -69,31 +74,29 @@ var myGoogleMap = initializeMap();
      position: latLng
    });
   //  marker.setMap(currentMap);
-   markersArray.push(marker);
+  //  markersArray.push(marker);
+  markersObj[type].push(marker);
  }
 
-  
-  drawMarker('hotel', [40.705137, -74.007624], myGoogleMap);
-  drawMarker('restaurant', [40.705137, -74.013940], myGoogleMap);
-  drawMarker('activity', [40.716291, -73.995315], myGoogleMap);
+
+  // drawMarker('hotel', [40.705137, -74.007624], myGoogleMap);
+  // drawMarker('restaurant', [40.705137, -74.013940], myGoogleMap);
+  // drawMarker('activity', [40.716291, -73.995315], myGoogleMap);
 
 
 function setMapOnAll(map) {
-  for (var i = 0; i < markersArray.length; i++) {
-    markersArray[i].setMap(map);
+  for (var i = 0; i < markersObj.hotel.length; i++) {
+    markersObj.hotel[i].setMap(map);
+  }
+  for (var i = 0; i < markersObj.restaurant.length; i++) {
+    markersObj.restaurant[i].setMap(map);
+  }
+  for (var i = 0; i < markersObj.activity.length; i++) {
+    markersObj.activity[i].setMap(map);
   }
   };
 
-  function clearMarkers() {
-        setMapOnAll(null);
-  };
 
-function removeMarkers() {
-  
-}
-
-
-
-
-
-  
+  function removeMarkers() {
+    
+  }
